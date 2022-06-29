@@ -4,48 +4,79 @@
 {% block titulo %}Dashboard | {{ block.super }}{% endblock titulo %}
 
 {% block conteudo %}
-<h1>A definir</h1>
-   <!-- <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Últimos Posts</h1>
-                 {% include 'parciais/_messages.html' %}
-                <a href="{% url 'adm:novo_post' %}" class="btn btn-primary">Novo Post</a><br><br>
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                       <th scope="col">Id</th>
-                        <th scope="col">Título</th>
+<h1>Atividades Recentes</h1>
+  <div class="conteiner">
 
-                        <th scope="col">Data</th>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">Publicado</th>
-                    </tr>
-                    <tr>
-                    {% for post in ultimos_posts %}
-                        <tr>
-                            <th scope="row">{{ post.id }}</th>
-                            <td>{{ post.titulo_post }}</td>
+    {% include 'parciais/_messages.html' %}
 
-                            <td>{{ post.data_post }}</td>
-                            <td>{{ post.categoria_post }}</td>
-                            <td>{{ post.publicado_post }}</td>
-                            <td><a href="{% url 'adm:editar_post' post.id  %}" class="btn btn-primary btn-sm">Editar</a>
-                            <a href="{% url 'adm:deletar_post' post.id  %}" class="btn btn-danger btn-sm">Apagar</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tr>
-                    </thead>
-                    <tbody>
+    <div class="col">
 
+        <h3>Total de Posts: {{ cont_posts.count }}</h3>
 
+        <table class="table table-hover">
+            <thead>
+            <tr>
+               <th scope="col">Id</th>
+                <th scope="col">Título</th>
+                <th scope="col">Data R$</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Publicado</th>
+                <th scope="col">Ações</th>
 
-                    </tbody>
-                </table>
+            </tr>
+            </thead>
+            <tbody>
 
-            </div>
-        </div>
+            {% for post in ultimos_posts %}
+                <tr>
+                    <th scope="row">{{ post.id }}</th>
+                    <td>{{ post.titulo_post }}</td>
+                    <td>{{ post.data_post }}</td>
+                    <td>{{ post.categoria_post }}</td>
+                    <td>{{ post.publicado_post }}</td>
+                    <td><a href="{% url 'adm:editar_post' post.id  %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'adm:deletar_post' post.id  %}" class="btn btn-danger btn-sm">Apagar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+         <h3>Total de Comentários: {{ cont_comentarios.count }}</h3>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+               <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Data</th>
+                <th scope="col">Publicado</th>
+                <th scope="col">Ações</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for comentario in ultimos_comentarios %}
+                <tr>
+                    <th scope="row">{{ comentario.id }}</th>
+                    <td>{{ comentario.nome_comentario }}</td>
+                    <td>{{ comentario.email_comentario }}</td>
+                    <td>{{ comentario.data_comentario }}</td>
+                    <td>{{ comentario.publicado_comentario }}</td>
+                    <td><a href="{% url 'adm:editar_comentario' comentario.id  %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'amd:deletar_comentario' comentario.id  %}" class="btn btn-danger btn-sm">Apagar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+     </div>
+
     </div>
-    -->
+
 {% endblock conteudo %}

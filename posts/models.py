@@ -2,7 +2,7 @@ from django.db import models
 from categorias.models import Categoria
 from django.contrib.auth.models import User
 from django.utils import timezone
-
+from adm.manages import PostManager
 
 class Post(models.Model):
     titulo_post = models.CharField(max_length=255, verbose_name='Título')
@@ -14,7 +14,7 @@ class Post(models.Model):
     foto = models.ImageField(upload_to='post_imagens/%Y/%m/%d', blank=True, null=True, verbose_name='Imagem')
     publicado_post = models.BooleanField(default=False, verbose_name='Publicado')
 
-
+    objects = PostManager()
 
     def foto_url(self):
         if self.foto and hasattr(self.foto, 'url'):

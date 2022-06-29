@@ -3,7 +3,7 @@ from posts.models import Post
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django import forms
-
+from adm.manages import ComentarioManager
 
 class Comentario(models.Model):
     nome_comentario = models.CharField(max_length=150, verbose_name='Nome')
@@ -14,6 +14,8 @@ class Comentario(models.Model):
     data_comentario = models.DateTimeField(default=timezone.now)
     publicado_comentario = models.BooleanField(default=False)
 
+
+    objects = ComentarioManager()
 
     def __str__(self):
         return self.nome_comentario

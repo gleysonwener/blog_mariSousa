@@ -22,8 +22,6 @@ urlpatterns = [
     path('editar_post/<int:pk>/', editar_post, name='editar_post'),
     path('deletar_post/<int:pk>/', deletar_post, name='deletar_post'),
     path('buscar/', buscar, name='buscar'),
-    path('novo_post_principal/', novo_post_principal, name='novo_post_principal'),
-    path('lista_novo_post_principal/', lista_novo_post_principal, name='lista_novo_post_principal'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

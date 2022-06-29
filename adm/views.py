@@ -10,13 +10,23 @@ from comentarios.models import Comentario
 from comentarios.forms import FormComentario
 from .forms import PostPrincipalForm
 from .models import ImagenPrincipal
+from django.db.models import Q
 
 @login_required
 def principal(request):
     template_name = 'adm/principal.html'
-    ultimos_posts = Post.objects.all().order_by('-id')[:8]
+
+    cont_posts = Post.objects.filter()
+    cont_comentarios = Comentario.objects.filter()
+
+    ultimos_posts = Post.objects.all().order_by('-id')[:4]
+    ultimos_comentarios = Comentario.objects.all().order_by('-id')[:4]
+
     context = {
-        'ultimos_posts': ultimos_posts
+        'ultimos_posts': ultimos_posts,
+        'ultimos_comentarios': ultimos_comentarios,
+        'cont_posts': cont_posts,
+        'cont_comentarios': cont_comentarios,
     }
     return render(request, template_name, context)
 
@@ -210,28 +220,5 @@ def buscar(request):
 
     return render(request, template_name, context)
 
-@login_required
-def novo_post_principal(request):
-    template_name = 'adm/novo_post_principal.html'
-    context = {}
-    if request.method == 'POST':
-        form = PostPrincipalForm(request.POST or None, request.FILES or None)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Imagem e Post principais , salvos com sucesso.')
-            return redirect('adm:principal')
-    else:
-        form = PostPrincipalForm()
-    context['form'] = form
-    return render(request, template_name, context)
 
-
-
-def lista_novo_post_principal(request):
-    template_name = 'post/index.html'
-    novos = ImagenPrincipal.objects.all().order_by('-id')[:1]
-    context = {
-        'novos': novos
-    }
-    return render(request, template_name, context)
 

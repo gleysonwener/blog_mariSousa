@@ -6,6 +6,7 @@ class ImagenPrincipal(models.Model):
     texto_principal = models.TextField(verbose_name='Texto Principal')
 
 
+
     def foto_url(self):
         if self.foto and hasattr(self.foto, 'url'):
             print("a url da foto é:", self.foto.url)

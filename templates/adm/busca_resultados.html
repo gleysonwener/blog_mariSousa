@@ -29,7 +29,7 @@
                 </tr>
                 </thead>
                 <tbody>
-
+                {% if posts %}
                 {% for post in posts %}
                     <tr>
                         <th scope="row">{{ post.titulo_post }}</th>
@@ -38,10 +38,11 @@
                         <td>{{ post.publicado_post }}</td>
 
                         <td><a href="{% url 'adm:editar_post' post.id  %}" class="btn btn-primary btn-sm">Editar</a>
-                            <a href="{% url 'adm:apagar_post' post.id  %}" class="btn btn-danger btn-sm">Apagar</a>
+                            <a href="{% url 'adm:deletar_post' post.id  %}" class="btn btn-danger btn-sm">Apagar</a>
                         </td>
                     </tr>
                 {% endfor %}
+                {% endif  %}
 
                 </tbody>
             </table>
@@ -63,15 +64,19 @@
 
                 {% for comentario in comentarios %}
                     <tr>
+
                         <th scope="row">{{ comentario.nome_comentario }}</th>
                         <td>{{ comentario.email_comentario }}</td>
                         <td>{{ comentario.data_comentario }}</td>
                         <td>{{ comentario.publicado_comentario }}</td>
                         <td><a href="{% url 'adm:editar_comentario' comentario.id  %}" class="btn btn-primary btn-sm">Editar</a>
-                            <a href="{% url 'adm:apagar_comentario' comentario.id  %}" class="btn btn-danger btn-sm">Apagar</a>
+                        <td><a href="{% url 'adm:deletar_comentario' comentario.id  %}" class="btn btn-primary btn-sm">Apagar</a>
+
                         </td>
+
                     </tr>
                 {% endfor %}
+
 
                 </tbody>
             </table>
