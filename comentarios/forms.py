@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from .models import Comentario
+from django import forms
 
 
 class FormComentario(ModelForm):
@@ -8,6 +9,8 @@ class FormComentario(ModelForm):
         nome = data.get('nome_comentario')
         email = data.get('email_comentario')
         comentario = data.get('comentario')
+
+
 
 
     class Meta:

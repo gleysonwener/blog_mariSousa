@@ -1,9 +1,8 @@
-from importlib._bootstrap import _verbose_message
-
 from django.db import models
 from posts.models import Post
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django import forms
 
 
 class Comentario(models.Model):

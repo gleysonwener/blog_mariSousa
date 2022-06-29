@@ -1,0 +1,44 @@
+{% extends 'base_adm.html' %}
+{% load widget_tweaks %}
+
+{% block titulo %}Categorias | {{ block.super }}{% endblock titulo %}
+
+{% block conteudo %}
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Categorias</h1>
+                 {% include 'parciais/_messages.html' %}
+                <a href="{% url 'adm:nova_categoria' %}" class="btn btn-primary">Nova Categoria</a><br><br>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                       <th scope="col">Id</th>
+                        <th scope="col">Categorias</th>
+                    </tr>
+                    <tr>
+                    {% for categoria in categorias %}
+                        <tr>
+                            <th scope="row">{{ categoria.id }}</th>
+                            <td>{{ categoria.nome_categoria }}</td>
+                            <td>
+                            <a href="{% url 'adm:deletar_categoria' categoria.id  %}" class="btn btn-danger btn-sm">Apagar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+{% endblock conteudo %}

@@ -1,0 +1,22 @@
+{% extends 'base_adm.html' %}
+{% load widget_tweaks %}
+
+{% block titulo %}Nova Categoria | {{ block.super }}{% endblock titulo %}
+
+{% block conteudo %}
+     <div class="container">
+      <div class="row">
+          <h1>Nova Categoria</h1>
+          <form method="post">
+              {% csrf_token %}
+              <div class="mb-3">
+                  <label for="{{ form.nome_categoria.id_for_label }}" class="form-label">{{ form.nome_categoria.label }}</label>
+                  {% render_field form.nome_categoria class='form-control' placeholder='Nome da categoria' %}
+              </div>
+
+              <button type="submit" class="btn btn-primary">Salvar</button>
+              <a href="{% url 'adm:lista_categoria' %}" class="btn btn-outline-secondary">Cancelar</a>
+          </form>
+      </div>
+  </div>
+{% endblock conteudo %}

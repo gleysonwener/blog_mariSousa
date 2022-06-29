@@ -1,0 +1,84 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block titulo %} Blog da RaFA - Dash{% endblock titulo %}</title>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Blog da RaFA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'adm:principal' %}">Início</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Operações
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'adm:novo_post_principal' %}">Post Principal</a></li>
+              <li><a class="dropdown-item" href="{% url 'adm:lista_post' %}">Posts</a></li>
+              <li><a class="dropdown-item" href="{% url 'adm:lista_comentario' %}">Comentários</a></li>
+              <li><a class="dropdown-item" href="{% url 'adm:lista_categoria' %}">Categorias</a></li>
+              <li><a class="dropdown-item" href="{% url 'adm:lista_novo_post_principal' %}">Lista Imagem Principal</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'adm:principal' %}">Relatórios</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="{% url 'usuarios:usuario_logout' %}">Sair</a>
+          </li>
+
+        </ul>
+        <form class="d-flex" role="search" action="{% url 'adm:buscar' %}">
+          <input class="form-control me-2" type="text" placeholder="Digite..." aria-label="Search" name="termo" >
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+
+          <li class="nav-item dropdown px-5" style="list-style-type: none">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+              {{ user.username }}
+              <img
+                      src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+                      class="rounded-circle z-depth-0"
+                      alt="avatar image"
+                      height="35"
+              />
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+              <li><a class="dropdown-item" href="{% url 'adm:principal' %}">Perfil</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="{% url 'adm:principal' %}">Trocar senha</a></li>
+            </ul>
+          </li>
+
+        </form>
+      </div>
+
+  </div>
+</nav>
+    {% block conteudo %}
+
+    {% endblock conteudo %}
+    <!--Scripts prar funcionar o dropdow-->
+   <script src="{% static 'js/jquery.js' %}"></script>
+   <script src="{% static 'js/bootstrap.js' %}"></script>
+  </body>
+</html>

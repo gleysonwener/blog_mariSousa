@@ -1,0 +1,17 @@
+{% extends 'base_adm.html' %}
+{% load widget_tweaks %}
+{% load bootstrap %}
+{% block titulo %}Novo Post | {{ block.super }}{% endblock titulo %}
+
+{% block conteudo %}
+     <div class="container">
+      <div class="row">
+          <h1>Novo Post</h1>
+            <form class="form-hotizontal" method="POST" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+      </div>
+  </div>
+{% endblock conteudo %}

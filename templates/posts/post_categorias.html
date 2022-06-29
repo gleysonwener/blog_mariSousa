@@ -9,10 +9,10 @@
                 <!-- FOR LOOP -->
                 {% for post in posts %}
                 <div class="card">
-                    {% if post.imagem_post %}
+                    {% if post.foto %}
                     <a href="{% url 'post_detalhes' post.id %}">
                         <img class="card-img-top"
-                             src="{{ post.imagem_post.url }}"
+                             src="{{ post.foto.url }}"
                              alt="{{ post.titulo_post }}">
                     </a>
                     {% endif %}

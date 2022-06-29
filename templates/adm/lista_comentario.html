@@ -1,0 +1,49 @@
+{% extends 'base_adm.html' %}
+{% load widget_tweaks %}
+
+{% block titulo %}Comentários | {{ block.super }}{% endblock titulo %}
+
+{% block conteudo %}
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>Comentários dos Posts</h2>
+                 {% include 'parciais/_messages.html' %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                       <th scope="col">Id</th>
+                        <th scope="col">Comentários</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Publicado</th>
+                    </tr>
+                    <tr>
+                    {% for comentario in comentarios %}
+                        <tr>
+                            <th scope="row">{{ comentario.id }}</th>
+                            <td>{{ comentario.nome_comentario }}</td>
+                            <td>{{ comentario.email_comentario }}</td>
+                            <td>{{ comentario.data_comentario }}</td>
+                            <td>{{ comentario.publicado_comentario }}</td>
+                            <td><a href="{% url 'adm:editar_comentario' comentario.id  %}" class="btn btn-primary btn-sm">Publicar o Comentário</a>
+                            <a href="{% url 'adm:deletar_comentario' comentario.id  %}" class="btn btn-danger btn-sm">Apagar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+{% endblock conteudo %}

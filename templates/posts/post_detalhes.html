@@ -22,8 +22,8 @@
                     <div class="row pt-5">
                         <div class="col-xl"></div>
                         <div class="col-xl-8">
-                            {% if post.imagem_post %}
-                            <img class="img-fluid pb-5 " src="{{ post.imagem_post.url }}" alt="{{ post.titulo_post }}">
+                            {% if post.foto %}
+                            <img class="img-fluid pb-5 " src="{{ post.foto.url }}" alt="{{ post.titulo_post }}">
                             {% endif %}
 
                             <p>{{ post.conteudo_post|safe }}</p>
