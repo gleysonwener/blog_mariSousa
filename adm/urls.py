@@ -22,6 +22,8 @@ urlpatterns = [
     path('editar_post/<int:pk>/', editar_post, name='editar_post'),
     path('deletar_post/<int:pk>/', deletar_post, name='deletar_post'),
     path('buscar/', buscar, name='buscar'),
+    path('relatorios/', relatorios, name='relatorios'),
+
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

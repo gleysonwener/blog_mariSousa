@@ -20,6 +20,7 @@
                         <th scope="col">Email</th>
                         <th scope="col">Data</th>
                         <th scope="col">Publicado</th>
+                        <th scope="col">Ações</th>
                     </tr>
                     <tr>
                     {% for comentario in comentarios %}
@@ -46,4 +47,5 @@
             </div>
         </div>
     </div>
+{% include 'parciais/_pagination.html' %}
 {% endblock conteudo %}

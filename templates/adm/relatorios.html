@@ -1,0 +1,97 @@
+{% extends 'base_adm.html' %}
+
+{% block titulo %}
+  Relatórios  | {{ block.super }}
+{% endblock titulo %}
+
+{% block conteudo %}
+<h3>Consultas</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Relatório</h1>
+        <form action="">
+          <div class="mb-3">
+            <label for="id-data-inicial">Informe a data inicial</label>
+            <input type="date" id="id-data-inicial" class="form-control" name="data-inicial">
+          </div>
+          <div class="mb-3">
+            <label for="id-data-final">Informe a data final</label>
+            <input type="date" id="id-data-final" class="form-control" name="data-final">
+          </div>
+            <div class="mb-3">
+                <label for="id-tipo">Informe o tipo de relatório</label>
+                <select id="id-tipo" class="form-control" name="tipo">
+                    <option value="PT">Posts</option>
+                    <option value="CM">Comentários</option>
+                </select>
+            </div>
+          <button type="submit" class="btn btn-primary">Consultar</button>
+          <a href="" class="btn btn-secondary">Cancelar</a>
+        </form>
+
+        {% if posts %}
+        <h3 class="mt-3">Post(s)</h3>
+        <table class="table table-hover">
+                <thead>
+                <tr>
+                   <th scope="col">Id</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Publicado</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                  {% for post in posts %}
+                      <tr>
+                          <th scope="row">{{ post.id }}</th>
+                          <td>{{ post.titulo_post }}</td>
+                          <td>{{ post.data_post }}</td>
+                          <td>{{ post.categoria_post }}</td>
+                          <td>{{ post.publicado_post }}</td>
+                          <td><a href="{% url 'adm:editar_post' post.id  %}" class="btn btn-primary btn-sm">Editar</a>
+                              <a href="{% url 'adm:deletar_post' post.id  %}" class="btn btn-danger btn-sm">Apagar</a>
+                          </td>
+                      </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+          {% if comentarios %}
+            <h3 class="mt-3">Comentários(s)</h3>
+            <table class="table table-hover">
+                    <thead>
+                    <tr>
+                       <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Publicado</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                      {% for comentario in comentarios %}
+                          <tr>
+                              <th scope="row">{{ comentario.id }}</th>
+                              <td>{{ comentario.nome_comentario }}</td>
+                              <td>{{ comentario.email_comentario }}</td>
+                              <td>{{ comentario.data_comentario }}</td>
+                              <td>{{ comentario.publicado_comentario }}</td>
+                              <td><a href="{% url 'adm:editar_comentario' comentario.id  %}" class="btn btn-primary btn-sm">Editar</a>
+                                  <a href="{% url 'adm:deletar_comentario' comentario.id  %}" class="btn btn-danger btn-sm">Apagar</a>
+                              </td>
+                          </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock conteudo %}

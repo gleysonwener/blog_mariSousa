@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block titulo %} Blog da RaFA - Dash{% endblock titulo %}</title>
+    <title>{% block titulo %} Marília Digital - {% endblock titulo %}</title>
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
   </head>
@@ -34,7 +34,7 @@
               <li><a class="dropdown-item" href="{% url 'adm:lista_comentario' %}">Comentários</a></li>
               <li><a class="dropdown-item" href="{% url 'adm:lista_categoria' %}">Categorias</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'adm:principal' %}">Relatórios</a></li>
+              <li><a class="dropdown-item" href="{% url 'adm:relatorios' %}">Relatórios</a></li>
             </ul>
           </li>
 
@@ -72,11 +72,16 @@
 
   </div>
 </nav>
-    {% block conteudo %}
+{% block conteudo %}
 
-    {% endblock conteudo %}
-    <!--Scripts prar funcionar o dropdow-->
-   <script src="{% static 'js/jquery.js' %}"></script>
-   <script src="{% static 'js/bootstrap.js' %}"></script>
-  </body>
+{% endblock conteudo %}
+<!--Scripts prar funcionar o dropdow-->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'css/bootstrap.min.js' %}"></script>
+{% include 'parciais/_pagination.html' %}
+</body>
+
 </html>

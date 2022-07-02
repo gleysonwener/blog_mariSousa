@@ -1,18 +1,10 @@
 from django.shortcuts import render, redirect
-
 from django.views.generic.list import ListView
-
 from django.views.generic.edit import UpdateView
-
-from adm.models import ImagenPrincipal
 from .models import Post
-
-from django.db.models import Q,Count,When, Case
-
+from django.db.models import Q, Count, When, Case
 from comentarios.forms import FormComentario
-
 from comentarios.models import Comentario
-
 from django.contrib import messages
 
 

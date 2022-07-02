@@ -1,16 +1,12 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from adm.forms import CategoriaForm, PostForm
-from posts.models import Post
 from categorias.models import Categoria
 from posts.models import Post
 from comentarios.models import Comentario
 from comentarios.forms import FormComentario
-from .forms import PostPrincipalForm
-from .models import ImagenPrincipal
-from django.db.models import Q
+from django.core.paginator import Paginator
 
 @login_required
 def principal(request):
@@ -154,7 +150,7 @@ def deletar_post(request, pk):
 @login_required
 def lista_comentario(request):
     template_name = 'adm/lista_comentario.html'
-    comentarios = Comentario.objects.all().order_by('-id')
+    comentarios = Comentario.objects.all().order_by('-id')[:8]
     context = {
         'comentarios': comentarios
     }
@@ -178,7 +174,7 @@ def novo_comentario(request):
 
 
 @login_required
-def editar_comentario(request, pk,):
+def editar_comentario(request, pk):
     template_name = 'adm/novo_comentario.html'
     context = {}
     comentarios = Comentario.objects.get(pk=pk)
@@ -221,4 +217,36 @@ def buscar(request):
     return render(request, template_name, context)
 
 
+@login_required
+def relatorios(request):
+    template_name = 'adm/relatorios.html'
+    context = {}
+    data_inicial = request.GET.get('data-inicial', None)
+    data_final = request.GET.get('data-final', None)
+    tipo = request.GET.get('tipo', None)
+    if data_final and data_inicial:
+        if tipo and tipo == 'PT':
+            posts = Post.objects.filter(data_post__gte=data_inicial, data_post__lte=data_final).order_by('-id')
+            context['posts'] = posts
+        else:
+            comentarios = Comentario.objects.filter(data_comentario__gte=data_inicial, data_comentario__lte=data_final).order_by('-id')
+            context['comentarios'] = comentarios
+    return render(request, template_name, context)
 
+
+def contato(request):
+    template_name = 'adm/contato.html'
+    context = {}
+
+    return render(request, template_name, context)
+
+
+def pagination(request):
+    template_name = 'adm/lista_post.html'
+    posts = Post.objects.all()
+    posts_paginator = Paginator(posts, 2)
+
+    page_num = request.GET.get('page')
+    page = posts_paginator.get_page(page_num)
+
+    return render(request, template_name, {'page': page})
