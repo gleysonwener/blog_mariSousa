@@ -9,11 +9,9 @@
  Acessem as várias postagens do Blog.</h4>
 <br>
 <div class="card-columns mt-4">
-
     {% for post in posts %}
     <div>
         <div class="card" width="400" height="200">
-
             {% if post.foto %}
             <a href="{% url 'post_detalhes' post.id %}">
                 <img class="card-img-top"
@@ -21,7 +19,6 @@
                      alt="{{ post.titulo_post }}" width="400" height="300">
             </a>
             {% endif %}
-
             <div class="card-body">
                 <h5 class="card-title">
                     <a href="{% url 'post_detalhes' post.id %}">
@@ -45,6 +42,9 @@
         </div>
         {% endfor %}
 </div>
-<!--/CONTENT-->
+<div class="col">
 {% include 'parciais/_pagination.html' %}
+</div>
 {% endblock conteudo%}
+
+

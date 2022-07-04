@@ -38,12 +38,22 @@
                     </tr>
                     </thead>
                     <tbody>
-
-
-
                     </tbody>
                 </table>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if comentarios.has_previous %}
+                            <a href="?page={{ comentarios.previous_page_number }}"><i class="btn btn-primary btn-sm">Anterior</i></a>
+                        {% endif %}
 
+                    <span class="current">
+                        {{ comentarios.number }} de {{ comentarios.paginator.num_pages }}
+                    </span>
+
+                    {% if posts.has_next %}
+                        <a href="?page={{ comentarios.next_page_number }}"><i class="btn btn-primary btn-sm">Próximo</i></a>
+                    {% endif %}
+                    </span>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 {% extends 'base_adm.html' %}
 {% load widget_tweaks %}
+{% load bootstrap %}
 
 {% block titulo %}Posts | {{ block.super }}{% endblock titulo %}
 
@@ -40,12 +41,26 @@
                 <tbody>
                 </tbody>
             </table>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if posts.has_previous %}
+                        <a href="?page={{ posts.previous_page_number }}"><i class="btn btn-primary btn-sm">Anterior</i></a>
+                    {% endif %}
 
+                    <span class="current">
+                        {{ posts.number }} de {{ posts.paginator.num_pages }}
+                    </span>
+
+                    {% if posts.has_next %}
+                        <a href="?page={{ posts.next_page_number }}"><i class="btn btn-primary btn-sm">Próximo</i></a>
+                    {% endif %}
+                    </span>
+            </div>
         </div>
     </div>
 </div>
 </div>
-{% include 'parciais/_pagination.html' %}
+
 
 {% endblock conteudo %}
 

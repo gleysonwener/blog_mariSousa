@@ -91,7 +91,14 @@ def deletar_categoria(request, pk):
 @login_required
 def lista_post(request):
     template_name = 'adm/lista_post.html'
-    posts = Post.objects.all().order_by('-id')[:8]
+    posts_list = Post.objects.all().order_by('-id')
+
+    paginator = Paginator(posts_list, 4)
+
+    page = request.GET.get('page')
+
+    posts = paginator.get_page(page)
+
     context = {
         'posts': posts
     }
@@ -150,7 +157,14 @@ def deletar_post(request, pk):
 @login_required
 def lista_comentario(request):
     template_name = 'adm/lista_comentario.html'
-    comentarios = Comentario.objects.all().order_by('-id')[:8]
+    comentarios_list = Comentario.objects.all().order_by('-id')
+
+    paginator = Paginator(comentarios_list, 4)
+
+    page = request.GET.get('page')
+
+    comentarios = paginator.get_page(page)
+
     context = {
         'comentarios': comentarios
     }
