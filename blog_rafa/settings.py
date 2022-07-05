@@ -2,6 +2,7 @@ import os.path
 from pathlib import Path
 from decouple import config
 from dj_database_url import parse as dburl
+import django_heroku
 
 import sys
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,7 +22,8 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = ['https://blogmarisousa.herokuapp.com/']
+#ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 
 # Application definition
@@ -88,7 +90,7 @@ DATABASES = {
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
-        #'HOST': config('DB_HOST'),
+        'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT'),
     }
 }
@@ -159,3 +161,5 @@ MESSAGE_TAGS = {
 INSTALLED_APPS += ('django_summernote',)
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+django_heroku.settings(locals())
