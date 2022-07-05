@@ -254,13 +254,3 @@ def contato(request):
 
     return render(request, template_name, context)
 
-
-def pagination(request):
-    template_name = 'adm/lista_post.html'
-    posts = Post.objects.all()
-    posts_paginator = Paginator(posts, 2)
-
-    page_num = request.GET.get('page')
-    page = posts_paginator.get_page(page_num)
-
-    return render(request, template_name, {'page': page})

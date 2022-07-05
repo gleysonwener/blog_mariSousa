@@ -3,5 +3,7 @@ venv
 media
 static
 staticfiles
-db.sqlite3
 manage.py
+*pyc
+*.idea
+*sqlite3
