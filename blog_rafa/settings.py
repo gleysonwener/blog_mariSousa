@@ -78,12 +78,12 @@ WSGI_APPLICATION = 'blog_rafa.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-'''default_dburl = 'postgresql:///' + os.path.join(BASE_DIR, 'postgresql')
+default_dburl = 'postgresql:///' + os.path.join(BASE_DIR, 'postgresql')
 
 DATABASES = {'default': config('DATABASE_URL', default=default_dburl,
-cast=dburl), }'''
+cast=dburl), }
 
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': config('DB_ENGINE'),
         'NAME': config('DB_NAME'),
@@ -92,7 +92,7 @@ DATABASES = {
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT'),
     }
-}
+}'''
 
 
 # Password validation
