@@ -1,9 +1,8 @@
-.env
-venv
+*.idea
+*.sqlite3
+*pyc
+.DS_Store
 media
+.env
 static
 staticfiles
-manage.py
-*pyc
-*.idea
-*sqlite3
