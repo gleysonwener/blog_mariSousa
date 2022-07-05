@@ -20,8 +20,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['blogmarisousa.herokuapp.com', 'localhost', '127.0.0.1']
-#ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 
 # Application definition
@@ -77,12 +77,12 @@ WSGI_APPLICATION = 'blog_rafa.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+'''default_dburl = 'postgresql:///' + os.path.join(BASE_DIR, 'postgresql')
 
 DATABASES = {'default': config('DATABASE_URL', default=default_dburl,
-cast=dburl), }
+cast=dburl), }'''
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': config('DB_ENGINE'),
         'NAME': config('DB_NAME'),
@@ -92,7 +92,7 @@ cast=dburl), }
         'PORT': config('DB_PORT'),
     }
 }
-'''
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
